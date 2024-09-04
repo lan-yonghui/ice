@@ -80,6 +80,7 @@ const getMiniappTask = ({
     enableCache: false,
     plugins,
     loaders: module?.rules,
+    assetsManifest: false,
     optimization: {
       sideEffects: true,
       usedExports: true,

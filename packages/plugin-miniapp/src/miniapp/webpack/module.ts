@@ -57,12 +57,22 @@ export class MiniWebpackModule {
         test: REG_TEMPLATE,
         type: 'asset/resource',
         generator: {
-          filename({ filename }) {
+          filename: ({ filename }) => {
             const extname = path.extname(filename);
             return filename.replace(`${this.sourceRoot}/`, '').replace(extname, fileType.templ);
           },
         },
         use: [this.getLoader(path.resolve(__dirname, './loaders/miniTemplateLoader'))],
+      },
+      {
+        test: /\.wxss$/,
+        type: 'asset/resource',
+        generator: {
+          filename: ({ filename }) => {
+            const extname = path.extname(filename);
+            return filename.replace(`${this.sourceRoot}/`, '').replace(extname, fileType.style);
+          },
+        },
       },
     ];
     return { rules };
